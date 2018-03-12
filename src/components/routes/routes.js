@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router,  Route } from 'react-router-dom';
-import Index from '../index/index';
+import Signup from '../signup/signup';
 
 const Routes = () =>(
     <Router>
-        <Route path="/" component={ Index } />
+        <Route path="/" component={ Signup } />
     </Router>
 );
 

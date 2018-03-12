@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+import API_URL from '../config/config';
 
 class SignupForm extends Component{
-   
+
     constructor(props){
         super(props);
         this.state = {
@@ -20,7 +23,9 @@ class SignupForm extends Component{
 
     onSubmit(e){
         e.preventDefault();
-        console.log(this.state);
+        //axios.post(API_URL+'/auth/register', this.state)
+        this.props.userSignupRequest(this.state)
+        
     }
     render(){
 

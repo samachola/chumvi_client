@@ -1,11 +1,15 @@
 import React, { Component }from 'react'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import bg from './video/bg.mp4';
-
 import SignupForm from '../forms/SignupForm';
+import userSignupRequest from '../../actions/signupActions';
 
-class Index extends Component{
+class Signup extends Component{
 
     render(){
+        const { userSignupRequest } = this.props;
         return (
             <div className="ch-login">
                 <div className="intro">
@@ -24,7 +28,7 @@ class Index extends Component{
                             <button>Login</button>
                             <button className="active">SignUp</button>
                         </div>
-                        <SignupForm />
+                        <SignupForm  userSignupRequest={userSignupRequest}/>
                     </div>
                 </div>
             </div>
@@ -32,4 +36,8 @@ class Index extends Component{
     }
 }
 
-export default Index;
+Signup.propTypes = {
+    userSignupRequest: PropTypes.func.isRequired
+}
+
+export default connect(null, { userSignupRequest })(Signup);
