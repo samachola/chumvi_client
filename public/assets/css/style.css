@@ -135,6 +135,12 @@ p {
     margin-bottom: 2px;
 }
 
+.ch-login .forms .form form .inputwrapper label .errs {
+    font-size: .7em;
+    color: #ec1717;
+    display: block;
+}
+
 .ch-login .forms .form form .inputwrapper input[type="email"],
 .ch-login .forms .form form .inputwrapper input[type="password"],
 .ch-login .forms .form form .inputwrapper input[type="text"] {
