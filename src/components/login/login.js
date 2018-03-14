@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import bg from './video/bg.mp4';
-import SignupForm from '../forms/SignupForm';
-import userSignupRequest from '../../actions/signupActions';
+import bg from '../signup/video/bg.mp4';
+import LoginForm from '../forms/LoginForm';
+import loginRequest from '../../actions/loginActions';
 
-class Signup extends Component {
+class Login extends Component {
   render() {
-    const { userSignupRequest } = this.props;
+    const { loginRequest } = this.props;
     return (
       <div className="ch-login">
         <div className="intro">
@@ -25,10 +25,10 @@ class Signup extends Component {
 
           <div className="form">
             <div className="tab">
-              <Link to="/login">login</Link>
-      	  		<Link className="active" to="/signup">signup</Link>
+              <Link className="active" to="/login">login</Link>
+      	  		<Link to="/signup">signup</Link>
             </div>
-            <SignupForm userSignupRequest={userSignupRequest} />
+            <LoginForm loginRequest={loginRequest} />
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ class Signup extends Component {
   }
 }
 
-Signup.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired,
+Login.propTypes = {
+  loginRequest: PropTypes.func.isRequired,
 };
 
-export default connect(null, { userSignupRequest })(Signup);
+export default connect(null, { loginRequest })(Login);

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
+import setAuthorizationTokens from '../../utils/setAuthorizationTokens';
 
-class SignupForm extends Component {
+
+class LoginForm extends Component {
     constructor(props){
         super(props);
         this.state = {
             'email': '',
-            'username': '',
 			'password': '',
 			'errors': {}, 
 			'isLoading': false
@@ -24,16 +25,18 @@ class SignupForm extends Component {
 	onSubmit = (e) => {
 			e.preventDefault();
 			this.setState({ errors: {}, isLoading: true });
-			this.props.userSignupRequest(this.state).then(
+			this.props.loginRequest(this.state).then(
 				(response) => {
-					console.log(response.data);
-					this.props.history.push("/login");
+                    console.log(response.data);
+                    localStorage.setItem('token', response.data.token);
+                    setAuthorizationTokens(response.data.token);
+                    console.log(jwt.decode(response.data.token));
+                    this.setState({ isLoading: false })
+                    this.props.history.push("/dashboard");
 				}
 			).catch((error) => {
-				console.log(error.response);
-				if (error){
-					this.setState({ errors: error.response.data.errors, isLoading: false });
-				}
+				console.log(error.response.data.errors);
+				this.setState({ errors: error.response.data.errors, isLoading: false });
 			});	
 	}
 
@@ -51,22 +54,14 @@ class SignupForm extends Component {
 
 						<div className="inputwrapper">
 								<label>
-									Username 
-									{ errors.username && <span className="errs">{ errors.username[0] }</span> }
-								</label>
-								<input type="text" value={this.state.username} name="username"  id="username" onChange={this.onChange} />
-						</div>
-
-						<div className="inputwrapper">
-								<label>
 									Password 
-									{ errors.password && <span className="errs">{ errors.password[0] }</span> }
+									{ errors.password && <span className="errs">{ errors.password }</span> }
 								</label>
 								<input type="password" value={this.state.password} name="password"  id="password" onChange={this.onChange} />
 						</div>
 
 						<div className="login-action">
-								<input disabled={ this.state.isLoading } type="submit" value="signup" />
+								<input disabled={ this.state.isLoading } type="submit" value="login" />
 								<a href="#">Forgot Password..?</a>
 						</div>
 				</form>
@@ -74,4 +69,4 @@ class SignupForm extends Component {
 	}
 }
 
-export default withRouter(SignupForm);
+export default withRouter(LoginForm);

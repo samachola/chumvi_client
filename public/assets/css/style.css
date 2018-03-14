@@ -99,7 +99,7 @@ p {
     grid-template-columns: 50% 50%;
 }
 
-.ch-login .forms .form .tab button {
+.ch-login .forms .form .tab a {
     background: transparent;
     padding: 1em 3em;
     border: none;
@@ -111,7 +111,7 @@ p {
     text-transform: uppercase;
 }
 
-.ch-login .forms .form .tab button.active {
+.ch-login .forms .form .tab a.active {
     background: #40596b;
     color: #E8CE4D;
 }

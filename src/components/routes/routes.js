@@ -1,11 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router,  Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Signup from '../signup/signup';
+import Login from '../login/login';
+import Dashboard from '../dashboard/dashboard';
 
-const Routes = () =>(
-    <Router>
-        <Route path="/" component={ Signup } />
-    </Router>
+const Routes = () => (
+  <BrowserRouter>
+    <div>
+      <Route path="/signup" component={Signup} />
+      <Route path="/login" component={Login} />
+      <Route path="/dashboard" component={Dashboard} />
+    </div>
+  </BrowserRouter>
 );
 
 export default Routes;
