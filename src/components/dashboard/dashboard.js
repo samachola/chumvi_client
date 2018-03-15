@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Category from '../category/category';
+import getCategoriesRequest from '../../actions/categoryAction';
 
 class Dashboard extends Component {
   render() {
+    const getCategoriesRequest = this.props;
     return (
       <div className="ch-home">
         <div className="ch-categories">
@@ -12,17 +17,7 @@ class Dashboard extends Component {
               <Link to="/login">ADD</Link>
             </div>
           </div>
-          <div className="categories">
-              <div className="category-item">
-                  <h2>Breakfast</h2>
-
-                  <div className="actions">
-                      <i className="fas fa-exclamation-circle"></i>
-                      <i className="fas fa-edit"></i>
-                      <i className="fas fa-trash-alt"></i>
-                  </div>
-              </div>
-          </div>
+          <Category getCategoriesRequest={this.props.getCategoriesRequest} />
         </div>
         <div className="ch-recipes">
             <div className="recipes">
@@ -76,4 +71,8 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  getCategoriesRequest: PropTypes.func.isRequired,
+};
+
+export default connect(null, { getCategoriesRequest })(Dashboard);

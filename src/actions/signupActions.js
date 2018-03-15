@@ -1,10 +1,13 @@
-import axios from 'axios';
-import API_URL from '../components/config/config';
+import userApi from '../api/userApi';
+import { USER_REGISTERED_SUCCESSFULLY } from '../utils/types';
 
-const userSignupRequest = (userData) => {
-	return dispatch => {
-		return axios.post(API_URL+'/auth/register', userData);
-	}
-}
+const userRegistered = user => ({
+  type: USER_REGISTERED_SUCCESSFULLY,
+  user,
+});
+const userSignupRequest = userData => dispatch => userApi.user.register(userData)
+  .then((response) => {
+    dispatch(userRegistered(response));
+  });
 
 export default userSignupRequest;

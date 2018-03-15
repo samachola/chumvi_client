@@ -8,10 +8,12 @@ class LoginForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            'email': '',
-			'password': '',
-			'errors': {}, 
-			'isLoading': false
+            data: {
+               email: '',
+			   password: '',
+            },
+			errors: {}, 
+			isLoading: false
         }
 
         this.onChange = this.onChange.bind(this);
@@ -19,24 +21,24 @@ class LoginForm extends Component {
     }
 
 	onChange = (e) => {
-			this.setState({ [e.target.name ]: e.target.value });
+			this.setState({
+                data: { ...this.state.data, [e.target.name ]: e.target.value }
+            });
 	}
 
 	onSubmit = (e) => {
 			e.preventDefault();
 			this.setState({ errors: {}, isLoading: true });
-			this.props.loginRequest(this.state).then(
-				(response) => {
-                    console.log(response.data);
-                    localStorage.setItem('token', response.data.token);
-                    setAuthorizationTokens(response.data.token);
-                    console.log(jwt.decode(response.data.token));
-                    this.setState({ isLoading: false })
-                    this.props.history.push("/dashboard");
+			this.props.loginRequest(this.state.data)
+			.then(() => {
+				this.setState({ isLoading: false });
+				this.props.history.push("/dashboard");
+			})	
+			.catch((error) => {
+				console.log(error.response);
+				if (error){
+					this.setState({ errors: error.response.data.errors, isLoading: false });
 				}
-			).catch((error) => {
-				console.log(error.response.data.errors);
-				this.setState({ errors: error.response.data.errors, isLoading: false });
 			});	
 	}
 
@@ -49,7 +51,7 @@ class LoginForm extends Component {
 									Email 
 									{ errors.email && <span className="errs">{ errors.email[0] }</span> }
 								</label>
-								<input type="email" value={this.state.email} name="email" id="email" onChange={this.onChange} />
+								<input type="email" value={this.state.data.email} name="email" id="email" onChange={this.onChange} />
 						</div>
 
 						<div className="inputwrapper">
@@ -57,7 +59,7 @@ class LoginForm extends Component {
 									Password 
 									{ errors.password && <span className="errs">{ errors.password }</span> }
 								</label>
-								<input type="password" value={this.state.password} name="password"  id="password" onChange={this.onChange} />
+								<input type="password" value={this.state.data.password} name="password"  id="password" onChange={this.onChange} />
 						</div>
 
 						<div className="login-action">

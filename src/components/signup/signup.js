@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Notifications from 'react-notify-toast';
 
 import bg from './video/bg.mp4';
 import SignupForm from '../forms/SignupForm';
@@ -12,6 +13,7 @@ class Signup extends Component {
     const { userSignupRequest } = this.props;
     return (
       <div className="ch-login">
+        <Notifications options={{ zIndex: 5000 }} />
         <div className="intro">
           <video loop muted autoPlay className="fullscreen-bg__video">
             <source src={bg} type="video/mp4" />

@@ -246,6 +246,7 @@ p {
 
 .ch-home .ch-categories .categories .category-item .actions svg {
     color: #E8CE4D;
+    padding: .2em;
 }
 
 .ch-recipes {
@@ -302,4 +303,5 @@ p {
 
 .ch-recipes .recipes .recipe .actions svg {
     color: #3a5365;
+    padding: .2em;
 }

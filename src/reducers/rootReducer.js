@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-
-import flashMessages from './flashMessages';
+import userReducer from './userReducer';
+import categoryReducer from './categoryReducer';
 
 export default combineReducers({
-  flashMessages,
+  userReducer,
+  categoryReducer,
 });
