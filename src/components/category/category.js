@@ -6,7 +6,7 @@ class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [], 
+      categories: [],
     };
   }
 
@@ -18,7 +18,6 @@ class Category extends Component {
   }
 
   render() {
-    console.log(this.props.categories)
     return (
       <div className="categories">
         {this.props.categories && this.props.categories.map((category) => {
