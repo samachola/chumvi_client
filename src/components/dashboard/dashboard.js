@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Category from '../category/category';
-import getCategoriesRequest from '../../actions/categoryAction';
 
 class Dashboard extends Component {
+
+
   render() {
     const getCategoriesRequest = this.props;
     return (
@@ -17,7 +18,7 @@ class Dashboard extends Component {
               <Link to="/login">ADD</Link>
             </div>
           </div>
-          <Category getCategoriesRequest={this.props.getCategoriesRequest} />
+          <Category />
         </div>
         <div className="ch-recipes">
             <div className="recipes">
@@ -71,8 +72,4 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  getCategoriesRequest: PropTypes.func.isRequired,
-};
-
-export default connect(null, { getCategoriesRequest })(Dashboard);
+export default Dashboard;
