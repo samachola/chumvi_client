@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Category from '../category/category';
 import Recipe from '../recipes/recipes';
 
-class Dashboard extends Component {
-
-
-  render() {
-    return (
+const Dashboard = () => (
       <div className="ch-home">
         <div className="ch-categories">
           <div className="intro">
@@ -19,9 +15,5 @@ class Dashboard extends Component {
           <Category />
         </div>
         <Recipe />
-      </div>
-    );
-  }
-}
-
+      </div>);
 export default Dashboard;
